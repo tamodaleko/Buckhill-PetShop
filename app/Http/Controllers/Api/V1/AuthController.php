@@ -22,26 +22,36 @@ class AuthController extends ApiV1Controller
             ], 401);
         }
 
-        $payload = auth()->payload();
-        $user = auth()->user();
-
-        $token = JwtToken::create([
-            'user_id' => $user->id,
-            'unique_id' => $payload['jti'],
-            'token_title' => $user->name,
-            'expires_at' => Carbon::parse($payload['exp'])
-        ]);
+        if (!$this->createToken()) {
+            return response()->json([
+                'error' => __('We couldn\'t generate the token. Please try again.')
+            ], 500);
+        }
 
         return $this->respondWithToken($jwt);
     }
 
     /**
-     * Get the token array structure.
-     *
+     * @return \App\Models\JwtToken|null
+     */
+    private function createToken()
+    {
+        $payload = auth()->payload();
+        $user = auth()->user();
+
+        return JwtToken::create([
+            'user_id' => $user->id,
+            'unique_id' => $payload['jti'],
+            'token_title' => $user->name,
+            'expires_at' => Carbon::parse($payload['exp'])
+        ]);
+    }
+
+    /**
      * @param string $token
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    private function respondWithToken($token)
     {
         return response()->json([
             'access_token' => $token,
