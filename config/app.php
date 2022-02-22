@@ -57,6 +57,15 @@ return [
     'asset_url' => env('ASSET_URL', null),
 
     /*
+    |-------------------------------------------
+    | Current API Version
+    |-------------------------------------------
+    | That is the default API version of your API (Last version).
+    | The idea is that if there is no version when calling the API, it  | will be used this one.
+    */
+    'api_latest'  => '1',
+
+    /*
     |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
@@ -175,6 +184,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+
     ],
 
     /*
@@ -229,6 +240,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 

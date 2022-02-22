@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
+     * @var string $apiNamespace
+     */
+    protected $apiNamespace ='App\Http\Controllers\Api';
+    
+    /**
      * The path to the "home" route for your application.
      *
      * This is used by Laravel authentication to redirect users after login.
@@ -39,9 +44,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::prefix('api')
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
+                ->middleware(['api', 'api_version:v1'])
+                ->namespace("{$this->apiNamespace}\V1")
+                ->group(base_path('routes/api_v1.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
