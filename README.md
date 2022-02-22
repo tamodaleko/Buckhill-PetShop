@@ -46,6 +46,12 @@ Run database migrations and seeds:
 php artisan migrate --seed
 ```
 
+Generate secret key for JWT encryption:
+
+```bash
+php artisan jwt:secret
+```
+
 Open the app in browser:
 
 ```bash
