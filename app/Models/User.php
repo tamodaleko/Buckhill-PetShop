@@ -6,8 +6,9 @@ use App\Models\Concerns\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable, Uuid;
 
@@ -51,4 +52,37 @@ class User extends Authenticatable
         'last_login_at' => 'timestamp',
         'email_verified_at' => 'timestamp',
     ];
+
+    /**
+     * @return string
+     */
+    public function getNameAttribute()
+    {
+        return trim($this->first_name) . ' ' . trim($this->last_name);
+    }
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        $url = config('app.url');
+        
+        return [
+            'iss' => $url ? parse_url($url)['host'] : null,
+            'user_uuid' => $this->uuid 
+        ];
+    }
 }
