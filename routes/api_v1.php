@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -9,5 +9,5 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// Auth Endpoints
-Route::post('/login', [AuthController::class, 'login']);
+// User Endpoints
+Route::post('/user/login', [UserController::class, 'login']);

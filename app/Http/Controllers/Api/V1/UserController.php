@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\V1\Auth\LoginRequest;
+use App\Http\Requests\V1\User\UserLoginRequest;
 use App\Models\JwtToken;
 use Illuminate\Support\Carbon;
 
-class AuthController extends ApiV1Controller
+class UserController extends ApiV1Controller
 {
     /**
-     * @param \App\Http\Requests\V1\Auth\LoginRequest $request
+     * @param \App\Http\Requests\V1\User\UserLoginRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(LoginRequest $request)
+    public function login(UserLoginRequest $request)
     {
         $credentials = request(['email', 'password']);
 
