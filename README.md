@@ -52,6 +52,12 @@ Generate secret key for JWT encryption:
 php artisan jwt:secret
 ```
 
+Run unit and feature tests:
+
+```bash
+php artisan test
+```
+
 Open the app in browser:
 
 ```bash
