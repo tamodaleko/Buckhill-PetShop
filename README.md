@@ -58,7 +58,7 @@ Run unit and feature tests:
 php artisan test
 ```
 
-Open the app in browser:
+Start all Docker containers:
 
 ```bash
 ./vendor/bin/sail up
