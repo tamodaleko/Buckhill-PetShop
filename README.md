@@ -61,5 +61,5 @@ php artisan test
 Open the app in browser:
 
 ```bash
-php artisan serve
+./vendor/bin/sail up
 ```
