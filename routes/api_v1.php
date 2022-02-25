@@ -10,4 +10,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 // User Endpoints
-Route::post('/user/login', [UserController::class, 'login']);
+Route::group(['prefix' => 'user'], function() {
+    Route::post('/login', [UserController::class, 'login'])->name('user.login');
+});
