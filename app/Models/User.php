@@ -54,6 +54,14 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
+     * Get jwt tokens for the user.
+     */
+    public function jwtTokens()
+    {
+        return $this->hasMany(JwtToken::class);
+    }
+
+    /**
      * @return string
      */
     public function getNameAttribute()
