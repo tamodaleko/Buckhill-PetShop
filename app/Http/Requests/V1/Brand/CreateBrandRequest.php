@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1\User;
+namespace App\Http\Requests\V1\Brand;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserLoginRequest extends FormRequest
+class CreateBrandRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UserLoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return !auth()->guest();
     }
 
     /**
@@ -24,8 +24,7 @@ class UserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'title' => ['required', 'string', 'max:255'],
         ];
     }
 }

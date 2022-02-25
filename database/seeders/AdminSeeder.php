@@ -27,7 +27,8 @@ class AdminSeeder extends Seeder
             'email' => 'admin@buckhill.co.uk',
             'password' => Hash::make('admin'),
             'address' => 'Testing 123',
-            'phone_number' => '2223339889'
+            'phone_number' => '2223339889',
+            'is_admin' => true
         ]);
     }
 }
